@@ -89,6 +89,7 @@ public class Guacamaya {
      * pre: Los arreglos precios y unidades deben estar declarados
      * pos: Los arreglos precios y unidades quedan inicializados
      */
+
     public static void establecerCantidadVendida() {
 
         System.out.println("\nDigite el numero de referencias de producto diferentes vendidas en el dia ");
@@ -98,34 +99,104 @@ public class Guacamaya {
         unidades = new int[referencias];
 
     }
+    /**
+         * Descripción: Este método solicita al usuario el precio y la cantidad vendida para cada referencia de producto.
+        * pre: Los arreglos `precios` y `unidades` deben estar inicializados y tener el tamaño adecuado.
+        * pos: Los arreglos `precios` y `unidades` quedan llenos con los valores proporcionados por el usuario.
+    */
 
     public static void solicitarDatos(){
+        
+        for( int i = 0; i<precios.length; i++){
 
-     
+            System.out.println("Ingrese el precio del producto : ");
+            precios[i] = reader.nextDouble();
+            System.out.println("Ingrese la cantidad vendida del producto : ");
+            unidades[i] = reader.nextInt();
+
+        }
     }
+    /**
+        * Descripción: Calcula el total de unidades vendidas sumando las cantidades de todas las referencias.
+        * pre: El arreglo `unidades` debe estar inicializado y contener las cantidades de productos vendidas.
+        * pos: Devuelve la suma total de todas las unidades vendidas en el día.
+        * @return El total de unidades vendidas.
+    */
 
     public static int calcularTotalUnidadesVendidas(){
 
-        return 0;
+       int TotalVendida = 0;
+
+       for (double  cantidad : unidades){
+        TotalVendida += cantidad;
+       }
+
+        return TotalVendida;
 
     }
+    /**
+        * Descripción: Calcula el precio promedio de las referencias de producto vendidas.
+        * pre: El arreglo `precios` debe estar inicializado y contener los precios de las referencias.
+        * pos: Devuelve el promedio de los precios de las referencias de productos vendidas.
+        * @return El precio promedio de los productos vendidos.
+    */
 
     public static double calcularPrecioPromedio(){
 
-        return 0;
+        double sumaPrecios = 0;
+
+        for(double precio : precios){
+
+            sumaPrecios += precio;
+        }
+        return sumaPrecios/precios.length;
 
     }
+    /**
+        * Descripción: Calcula el total de dinero recaudado multiplicando los precios por las cantidades de cada referencia vendida.
+        * pre: Los arreglos `precios` y `unidades` deben estar inicializados y tener el mismo tamaño.
+        * pos: Devuelve la suma total del dinero recaudado en el día por las ventas.
+        * @return El total de ventas en dinero.
+     */
 
     public static double calcularVentasTotales(){
 
-        return 0;
+        double VentasTotales = 0;
+
+        for(int i = 0; i<precios.length; i++){
+
+            VentasTotales += precios[i]*unidades[i];
+
+        }
+        return VentasTotales;
 
     }
-
+    
+    /**
+        * Descripción: Consulta cuántas referencias superan un límite mínimo de ventas proporcionado por el usuario.
+        * pre: Los arreglos `precios` y `unidades` deben estar inicializados y tener el mismo tamaño.
+        * pre: El parámetro `limite` debe ser mayor o igual a cero.
+        * pos: Devuelve el número de referencias cuyos ingresos totales (precio * cantidad) son mayores o iguales al límite.
+        * @param limite El límite mínimo de ventas a considerar.
+        * @return El número de referencias que superan el límite de ventas.
+    */
     public static int consultarReferenciasSobreLimite(double limite){
 
-        return 0;
+        int referenciaSobreLimite = 0;
+
+        for(int i = 0; i<precios.length; i++){
+
+            if(precios[i]*unidades[i] >= limite){
+
+                referenciaSobreLimite++;
+            }
+
+
+
+        }
+        return referenciaSobreLimite;
 
     }
 
 }
+
